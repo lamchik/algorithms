@@ -4,7 +4,7 @@ Output: [4,5,1,2,3]
 */
 
 
-import {ListNode, n1, n2} from "./constans.mjs";
+import {n1} from "./constans.mjs";
 
 function getLastNode (head) {
     let current = head
