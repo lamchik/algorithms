@@ -4,9 +4,9 @@ export function ListNode(val, next) {
 }
 
 
-export const n4 = new ListNode(1);
+export const n4 = new ListNode(4);
 export const n3 = new ListNode(3, n4);
-export const n2 = new ListNode(3, n3);
+export const n2 = new ListNode(2, n3);
 export const n1 = new ListNode(1, n2);
 
 // export const l6 = new ListNode(1);
