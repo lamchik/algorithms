@@ -1,6 +1,9 @@
 /*Given the head of a linked list, rotate the list to the right by k places.
 Input: head = [1,2,3,4,5], k = 2
 Output: [4,5,1,2,3]
+
+1) 5,1,2,3,4
+2) 4,5,1,2,3
 */
 
 
@@ -13,6 +16,20 @@ function getLastNode (head) {
     }
     return current
 }
+
+function countNodes (head) {
+    if(!head) {
+        return 0
+    }
+    let current = head
+    let count = 1
+    while(current.next) {
+        count++
+        current = current.next
+    }
+    return count
+}
+
 
 function deleteLastNode(head) {
     let current = head
@@ -29,6 +46,11 @@ function deleteLastNode(head) {
     return head
 }
 
+/* Берем последнюю ноду и сохранаем в переменную, к ней добавляем хвост остальной из нашей ноды
+(который предварительно сохранили и вырезали из него поледнюю ноду
+тк она у нас будет в начале) */
+
+/* recursion */
 function rotateList(head, k) {
     if (!k || !head.next) {
         return head
@@ -51,4 +73,28 @@ function rotateList(head, k) {
     }
 }
 
-console.log(rotateList(n1, 2))
+/* cycle */
+
+function rotateList2(head, k) {
+    if (!k || !head.next) {
+        return head
+    }
+
+    let current = head
+    let currentNext = current
+    let lastNode = getLastNode(head)
+    let countHead = countNodes(head)
+    let countIterations = k % countHead
+    while(countIterations) {
+        current = lastNode
+        deleteLastNode(currentNext)
+        current.next = currentNext
+        lastNode = getLastNode(current)
+        currentNext = current
+        countIterations--
+    }
+    return current
+}
+console.log(rotateList2(n1, 2))
+
+//012, 201,
